@@ -1,25 +1,20 @@
+import { apiProvider } from "./apiProvider.js";
+import { loadSettings } from "./settings.js";
 import { localDemoProvider } from "./localDemoProvider.js";
 
 export { STYLES, STYLE_LABELS } from "./provider.js";
 
 /**
- * Single switch point for which rewrite provider LingoLift uses.
- *
- * Today this is the offline `localDemoProvider`. To integrate a real
- * backend/LLM later:
- *   1. Create e.g. `engine/apiProvider.js` implementing the interface
- *      documented in `engine/provider.js`.
- *   2. Import it here and change ACTIVE_PROVIDER below.
- * No changes are needed in popup.js — it only calls `rewrite()` below.
+ * Selects the real BYOK provider when the user has saved the minimum
+ * configuration. Until demo mode is removed in a follow-up commit, requests
+ * without a saved API key/model continue using the local provider.
  */
-const ACTIVE_PROVIDER = localDemoProvider;
-
-/**
- * @param {{text: string, style: string}} request
- * @returns {Promise<{rewrittenText: string, explanationVi: string}>}
- */
-export function rewrite(request) {
-  return ACTIVE_PROVIDER.rewrite(request);
+export async function rewrite(request) {
+  const settings = await loadSettings();
+  const provider = settings.apiKey.trim() && settings.model.trim()
+    ? apiProvider
+    : localDemoProvider;
+  return provider.rewrite(request);
 }
 
-export const activeProviderId = ACTIVE_PROVIDER.id;
+export const activeProviderId = "configured-at-runtime";
