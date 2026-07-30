@@ -17,6 +17,7 @@ const els = {
   historySection: document.getElementById("history-section"),
   historyList: document.getElementById("history-list"),
   clearHistoryBtn: document.getElementById("clear-history-btn"),
+  optionsBtn: document.getElementById("options-btn"),
 };
 
 let currentStyle = STYLES.NATURAL;
@@ -54,6 +55,9 @@ els.input.addEventListener("keydown", (event) => {
 });
 
 els.rewriteBtn.addEventListener("click", handleRewrite);
+els.optionsBtn.addEventListener("click", () => {
+  chrome.runtime.openOptionsPage();
+});
 
 // --- Rewrite flow -------------------------------------------------------
 

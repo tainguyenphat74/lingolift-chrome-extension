@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="color-scheme" content="dark" />
+    <title>LingoLift Settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app__header">
+        <div class="brand">
+          <img class="brand__logo" src="../icons/icon32.png" alt="" width="24" height="24" />
+          <div class="brand__text">
+            <h1 class="brand__name">LingoLift Settings</h1>
+            <p class="brand__tagline">Bring your own API key (optional)</p>
+          </div>
+        </div>
+      </header>
+
+      <main class="app__body">
+        <p class="warning" role="alert">
+          <strong>Your API key stays on this device.</strong> It is saved only in this
+          browser's local extension storage (<code>chrome.storage.local</code>) and is
+          never sent to LingoLift or any LingoLift server. It is <strong>not</strong>
+          encrypted — anything else with access to your browser profile's extension
+          storage on this device could read it. Don't use this on a shared or untrusted
+          computer.
+        </p>
+
+        <section class="field">
+          <label class="field__label" for="provider-select">Provider</label>
+          <select id="provider-select" class="select">
+            <option value="openai">OpenAI</option>
+            <option value="anthropic">Anthropic</option>
+            <option value="openai-compatible">OpenAI-compatible</option>
+          </select>
+        </section>
+
+        <section class="field">
+          <label class="field__label" for="api-key-input">API key</label>
+          <div class="input-with-action">
+            <input
+              id="api-key-input"
+              class="text-input"
+              type="password"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="Paste your API key"
+            />
+            <button type="button" id="toggle-key-btn" class="btn btn--ghost btn--small">Show</button>
+          </div>
+          <p class="field__hint">Stored locally and masked by default. Use Show to reveal it on screen.</p>
+        </section>
+
+        <section class="field">
+          <label class="field__label" for="model-input">Model</label>
+          <input
+            id="model-input"
+            class="text-input"
+            type="text"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="e.g. gpt-4o-mini"
+          />
+        </section>
+
+        <section class="field" id="base-url-field" hidden>
+          <label class="field__label" for="base-url-input">Base URL</label>
+          <input
+            id="base-url-input"
+            class="text-input"
+            type="text"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="https://your-endpoint.example.com/v1"
+          />
+          <p class="field__hint">Required for OpenAI-compatible endpoints (e.g. a local or self-hosted server).</p>
+        </section>
+
+        <p class="status-message" id="status-message" role="status" hidden></p>
+
+        <div class="actions">
+          <button type="button" id="save-btn" class="btn btn--primary">Save</button>
+          <button type="button" id="clear-btn" class="btn btn--ghost">Clear saved settings</button>
+        </div>
+
+        <p class="note">
+          LingoLift currently rewrites text using its built-in offline demo engine, so
+          saving a key here does not change rewrite behavior yet. This page only stores
+          your settings for upcoming provider support.
+        </p>
+      </main>
+    </div>
+
+    <script src="options.js" type="module"></script>
+  </body>
+</html>

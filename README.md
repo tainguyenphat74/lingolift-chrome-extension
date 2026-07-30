@@ -33,6 +33,22 @@ key, no build step, and no external dependencies**.
 
 No `npm install`, no build/bundle step — the files are loaded as-is.
 
+## Provider settings (BYOK)
+
+Open **Options** from the popup to save your own provider settings locally.
+LingoLift currently supports these provider choices:
+
+- OpenAI
+- Anthropic
+- OpenAI-compatible endpoints
+
+The settings page stores the provider, model, base URL, and API key in this
+browser's `chrome.storage.local`. The API key is never sent to LingoLift or a
+LingoLift server. Chrome extension storage is not an encrypted vault, so use a
+separate key with provider-side spending limits and do not use this feature on
+shared or untrusted computers. The current MVP does not make provider API calls
+yet; the settings page prepares the BYOK configuration for the provider client.
+
 ## Usage
 
 ### Popup
