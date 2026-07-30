@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="color-scheme" content="light" />
+    <title>LingoLift</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app__header">
+        <div class="brand">
+          <img class="brand__logo" src="../icons/icon32.png" alt="" width="24" height="24" />
+          <div class="brand__text">
+            <h1 class="brand__name">LingoLift</h1>
+            <p class="brand__tagline">Rewrite English, understand it in Vietnamese</p>
+          </div>
+        </div>
+      </header>
+
+      <main class="app__body">
+        <section class="field">
+          <div class="field__label-row">
+            <label class="field__label" for="input-text">Your English text</label>
+            <span class="char-count" id="char-count">0</span>
+          </div>
+          <textarea
+            id="input-text"
+            class="textarea"
+            placeholder="Type or paste English text here… (Ctrl/Cmd+Enter to rewrite)"
+            rows="5"
+          ></textarea>
+        </section>
+
+        <section class="field">
+          <span class="field__label">Style</span>
+          <div class="style-selector" id="style-selector" role="radiogroup" aria-label="Rewrite style">
+            <button type="button" class="style-chip" data-style="natural" role="radio" aria-checked="true">
+              Natural
+            </button>
+            <button type="button" class="style-chip" data-style="professional" role="radio" aria-checked="false">
+              Professional
+            </button>
+            <button type="button" class="style-chip" data-style="casual" role="radio" aria-checked="false">
+              Casual
+            </button>
+          </div>
+        </section>
+
+        <div class="actions">
+          <button type="button" id="rewrite-btn" class="btn btn--primary">
+            <span id="rewrite-btn-label">Rewrite</span>
+          </button>
+          <span class="hint">or press <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>Enter</kbd></span>
+        </div>
+
+        <p class="error" id="error-message" role="alert" hidden></p>
+
+        <section class="field result-section" id="result-section" hidden>
+          <div class="field__label-row">
+            <label class="field__label" for="result-text">Result</label>
+            <button type="button" id="copy-btn" class="btn btn--ghost btn--small">Copy</button>
+          </div>
+          <textarea id="result-text" class="textarea textarea--result" readonly rows="5"></textarea>
+
+          <div class="explanation" id="explanation-box">
+            <span class="explanation__badge">VI</span>
+            <p class="explanation__text" id="explanation-text"></p>
+          </div>
+        </section>
+
+        <section class="history" id="history-section" hidden>
+          <div class="history__header">
+            <h2 class="history__title">Recent</h2>
+            <button type="button" id="clear-history-btn" class="btn btn--link">Clear</button>
+          </div>
+          <ul class="history__list" id="history-list"></ul>
+        </section>
+      </main>
+
+      <footer class="app__footer">
+        <span id="provider-badge">Demo mode — rewriting runs locally, no API key needed</span>
+      </footer>
+    </div>
+
+    <script src="popup.js" type="module"></script>
+  </body>
+</html>
