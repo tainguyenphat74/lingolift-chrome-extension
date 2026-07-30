@@ -106,7 +106,7 @@ function initLingoLift() {
       * { box-sizing: border-box; }
       .ll-fab, .ll-pop {
         position: fixed;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         z-index: 2147483647;
       }
       .ll-fab {
@@ -115,18 +115,19 @@ function initLingoLift() {
         height: ${FAB_SIZE}px;
         align-items: center;
         justify-content: center;
-        border: none;
+        border: 1px solid rgba(138, 124, 255, 0.35);
         border-radius: 999px;
-        background: linear-gradient(135deg, #4f46e5 0%, #10b981 100%);
-        color: #fff;
-        font-size: 15px;
+        background: #17171d;
+        color: #b3a8ff;
+        font-size: 13px;
         line-height: 1;
         cursor: pointer;
-        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.25);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         padding: 0;
+        transition: transform 0.12s ease, border-color 0.12s ease, color 0.12s ease;
       }
       .ll-fab.is-visible { display: flex; }
-      .ll-fab:hover { transform: scale(1.06); }
+      .ll-fab:hover { transform: scale(1.06); border-color: rgba(138, 124, 255, 0.6); color: #d5cfff; }
       .ll-fab:active { transform: scale(0.96); }
 
       .ll-pop {
@@ -134,12 +135,12 @@ function initLingoLift() {
         width: ${POPOVER_WIDTH}px;
         max-height: ${POPOVER_MAX_HEIGHT}px;
         overflow-y: auto;
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
+        background: #131318;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
         padding: 10px;
-        color: #0f172a;
+        color: #f1f1f4;
         font-size: 12.5px;
       }
       .ll-pop.is-visible { display: block; }
@@ -153,30 +154,31 @@ function initLingoLift() {
       .ll-pop__title {
         font-weight: 700;
         font-size: 12.5px;
-        color: #4f46e5;
+        letter-spacing: -0.01em;
+        color: #b3a8ff;
       }
       .ll-pop__close {
         border: none;
         background: none;
-        color: #64748b;
+        color: #96969f;
         font-size: 15px;
         line-height: 1;
         cursor: pointer;
         padding: 2px 4px;
         border-radius: 4px;
       }
-      .ll-pop__close:hover { background: #f1f5f9; color: #0f172a; }
+      .ll-pop__close:hover { background: #1c1c24; color: #f1f1f4; }
 
       .ll-pop__source {
         margin: 0 0 8px;
         padding: 6px 8px;
         max-height: 60px;
         overflow-y: auto;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
+        background: #191920;
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 8px;
         font-size: 11.5px;
-        color: #475569;
+        color: #96969f;
         white-space: pre-wrap;
         word-break: break-word;
       }
@@ -191,16 +193,16 @@ function initLingoLift() {
         padding: 6px 4px;
         font-size: 11px;
         font-weight: 600;
-        color: #64748b;
-        background: #fff;
-        border: 1px solid #e2e8f0;
+        color: #96969f;
+        background: #191920;
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 6px;
         cursor: pointer;
       }
-      .ll-style-chip:hover { border-color: #4f46e5; color: #4f46e5; }
+      .ll-style-chip:hover { border-color: rgba(138, 124, 255, 0.28); color: #f1f1f4; }
       .ll-style-chip[aria-checked="true"] {
-        background: #4f46e5;
-        border-color: #4f46e5;
+        background: linear-gradient(135deg, #8a7cff 0%, #5b8cff 100%);
+        border-color: transparent;
         color: #fff;
       }
 
@@ -210,21 +212,21 @@ function initLingoLift() {
         font-size: 12.5px;
         font-weight: 600;
         color: #fff;
-        background: #4f46e5;
+        background: linear-gradient(135deg, #8a7cff 0%, #5b8cff 100%);
         border: none;
         border-radius: 8px;
         cursor: pointer;
       }
-      .ll-btn:hover:not(:disabled) { background: #4338ca; }
+      .ll-btn:hover:not(:disabled) { filter: brightness(1.08); }
       .ll-btn:disabled { cursor: not-allowed; opacity: 0.6; }
 
       .ll-error {
         margin: 8px 0 0;
         padding: 6px 8px;
         font-size: 11.5px;
-        color: #dc2626;
-        background: #fef2f2;
-        border: 1px solid #fecaca;
+        color: #fb7185;
+        background: rgba(251, 113, 133, 0.1);
+        border: 1px solid rgba(251, 113, 133, 0.28);
         border-radius: 6px;
       }
       .ll-error.is-hidden { display: none; }
@@ -236,27 +238,26 @@ function initLingoLift() {
         padding: 6px 8px;
         max-height: 90px;
         overflow-y: auto;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
+        background: #17171d;
+        border: 1px solid rgba(138, 124, 255, 0.28);
         border-radius: 8px;
         white-space: pre-wrap;
         word-break: break-word;
+        color: #f1f1f4;
       }
       .ll-result__explanation {
         margin: 0 0 8px;
-        padding: 6px 8px;
-        background: #f0fdf4;
-        border: 1px solid #bbf7d0;
-        border-radius: 8px;
-        color: #14532d;
+        padding: 6px 8px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        color: #96969f;
         font-size: 11px;
       }
       .ll-result__actions { display: flex; gap: 6px; }
       .ll-result__actions .ll-btn--ghost {
-        background: #eef2ff;
-        color: #4f46e5;
+        background: rgba(138, 124, 255, 0.12);
+        color: #b3a8ff;
       }
-      .ll-result__actions .ll-btn--ghost:hover:not(:disabled) { background: #e0e7ff; }
+      .ll-result__actions .ll-btn--ghost:hover:not(:disabled) { filter: none; background: rgba(138, 124, 255, 0.2); }
     </style>
     <button type="button" class="ll-fab" aria-label="Rewrite with LingoLift" title="Rewrite with LingoLift">✨</button>
     <div class="ll-pop" role="dialog" aria-label="LingoLift rewrite">
