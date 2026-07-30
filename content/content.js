@@ -4,9 +4,9 @@
  * Runs as a classic (non-module) MV3 content script on every http(s) page.
  * It watches for focus on text fields, offers a small floating action
  * button (FAB) near the focused field, and — on click — opens a compact
- * popover to rewrite the selection (or the whole field) using the same
- * local, offline demo engine the popup uses (via the background service
- * worker, since content scripts cannot `import` ES modules directly).
+ * popover to rewrite the selection (or the whole field) through the
+ * configured BYOK provider via the background service worker, since content
+ * scripts cannot `import` ES modules directly.
  *
  * Everything the widget renders lives inside a closed Shadow DOM so the
  * host page's CSS can never bleed in, and our styles can never leak out.

@@ -10,9 +10,8 @@
  *   - "anthropic"          -> Anthropic Messages API
  *   - "openai-compatible"  -> Chat Completions API at a user-supplied base URL
  *
- * This module is self-contained (fetch only, no dependencies) and is NOT
- * wired into `engine/index.js` yet — the active provider is still
- * `localDemoProvider`. See README.md for status.
+ * This module is self-contained (fetch only, no dependencies) and is wired
+ * into `engine/index.js` when the user has saved valid provider settings.
  */
 
 import { STYLES, assertValidRequest } from "./provider.js";

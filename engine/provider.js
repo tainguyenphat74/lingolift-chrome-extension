@@ -3,9 +3,8 @@
  *
  * A "provider" is anything that can take English text + a target style and
  * return a rewritten version plus a short Vietnamese explanation of what
- * changed. LingoLift ships with `localDemoProvider.js`, a fully offline,
- * deterministic provider so the extension works out of the box with no
- * API key and no network access.
+ * changed. Implementations may call a remote provider directly from the
+ * extension using the user's own API key.
  *
  * To plug in a real backend/LLM later, create a new provider module that
  * exports an object matching this shape:

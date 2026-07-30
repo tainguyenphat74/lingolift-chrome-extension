@@ -6,9 +6,6 @@ import { rewrite } from "../engine/index.js";
  * scripts, so they can't `import` `engine/index.js` directly — the
  * background service worker (which *can* be an ES module) does that
  * import once and exposes it over `chrome.runtime.onMessage`.
- *
- * All rewriting still happens fully on-device via the local demo engine;
- * no network request is made and no text leaves the browser.
  */
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (!message || message.type !== "LINGOLIFT_REWRITE") return undefined;
