@@ -23,7 +23,9 @@ LingoLift supports settings for:
 
 Provider settings are saved in the browser with `chrome.storage.local`. API keys are not sent to LingoLift or a LingoLift server. Browser extension storage is not an encrypted vault, so use a dedicated key with spending limits and avoid shared or untrusted computers.
 
-The provider adapters are present, but the current branch still uses the offline demo engine until provider activation is completed.
+Provider adapters are active when valid settings are saved. LingoLift sends requests
+directly from the extension to the selected provider; it does not proxy requests
+through a LingoLift server.
 
 ## Installation
 
@@ -72,8 +74,7 @@ Then load the extension unpacked and test both popup and inline rewriting in Chr
 
 ## Limitations
 
-- The current active provider is an offline rule-based demo engine.
-- Provider API adapters are not active yet.
+- A valid provider API key and model are required to rewrite text.
 - Custom rich-text editors may need additional compatibility work.
 - History is stored locally and limited to eight popup rewrites.
 

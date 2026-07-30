@@ -1,20 +1,20 @@
 import { apiProvider } from "./apiProvider.js";
 import { loadSettings } from "./settings.js";
-import { localDemoProvider } from "./localDemoProvider.js";
 
 export { STYLES, STYLE_LABELS } from "./provider.js";
 
 /**
- * Selects the real BYOK provider when the user has saved the minimum
- * configuration. Until demo mode is removed in a follow-up commit, requests
- * without a saved API key/model continue using the local provider.
+ * Route every rewrite through the user's configured BYOK provider.
  */
 export async function rewrite(request) {
   const settings = await loadSettings();
-  const provider = settings.apiKey.trim() && settings.model.trim()
-    ? apiProvider
-    : localDemoProvider;
-  return provider.rewrite(request);
+  if (!settings.apiKey.trim()) {
+    throw new Error("No API key is configured. Open Options and add your provider API key.");
+  }
+  if (!settings.model.trim()) {
+    throw new Error("No model is configured. Open Options and set a model.");
+  }
+  return apiProvider.rewrite(request);
 }
 
 export const activeProviderId = "configured-at-runtime";

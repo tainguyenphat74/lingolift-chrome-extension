@@ -61,10 +61,10 @@ The extension accepts a sentence, rewrites it in a selected style, and explains 
 
 ### Final MVP provider behavior
 
-- If no provider settings exist, show setup guidance instead of silently using a fake AI result.
+- If no provider settings exist, show setup guidance and do not attempt a rewrite.
 - If provider settings are valid, call the selected provider directly.
 - Do not send API keys or user text to a LingoLift-owned backend.
-- Remove the demo provider from the normal product flow after real provider integration is verified.
+- The offline demo provider is not part of the active product flow.
 
 ## 5. Explicit exclusions
 
@@ -148,18 +148,17 @@ The extension must not send provider keys or sentence text to LingoLift infrastr
 
 Completed:
 
-- Chrome extension MVP and local demo engine.
-- Inline webpage workflow.
+- Chrome extension MVP and inline webpage workflow.
 - Dark premium theme.
 - Local BYOK settings page.
 - Provider adapter layer for OpenAI, Anthropic, and OpenAI-compatible APIs.
+- Active provider routing with no demo fallback.
 
 Next implementation boundary:
 
-- Activate the provider adapter when valid settings exist.
-- Add provider-aware setup and error states.
-- Remove demo mode from the normal rewrite flow.
 - Test real requests with user-supplied keys without committing credentials.
+- Add provider-aware UI status and setup shortcuts.
+- Improve compatibility with custom rich-text editors.
 
 ## 10. Security and privacy risks
 
