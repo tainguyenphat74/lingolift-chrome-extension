@@ -46,8 +46,9 @@ The settings page stores the provider, model, base URL, and API key in this
 browser's `chrome.storage.local`. The API key is never sent to LingoLift or a
 LingoLift server. Chrome extension storage is not an encrypted vault, so use a
 separate key with provider-side spending limits and do not use this feature on
-shared or untrusted computers. The current MVP does not make provider API calls
-yet; the settings page prepares the BYOK configuration for the provider client.
+shared or untrusted computers. The provider adapters now exist in
+`engine/apiProvider.js`, but they are not active yet; the extension still uses
+the local demo provider until the integration commit is completed.
 
 ## Usage
 
@@ -84,6 +85,8 @@ lingolift-chrome-extension/
 ├── engine/
 │   ├── provider.js            # Provider interface/contract + shared style constants
 │   ├── localDemoProvider.js   # Deterministic offline rewrite engine (the default provider)
+│   ├── apiProvider.js         # BYOK adapters for OpenAI, Anthropic, and compatible APIs
+│   ├── settings.js            # Local provider settings storage
 │   └── index.js               # Single switch point selecting the active provider
 ├── background/
 │   └── background.js          # Message bridge to the rewrite engine
